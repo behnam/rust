@@ -28,6 +28,7 @@ Rust provides a number of book-length sets of documentation, collectively
 nicknamed 'The Rust Bookshelf.'
 
 * [The Rust Programming Language][book] teaches you how to program in Rust.
+* [The Cargo Manual][cargo-book] describes Cargo, Rust's build system and package manager.
 * [The Unstable Book][unstable-book] has documentation for unstable features.
 * [The Rustonomicon][nomicon] is your guidebook to the dark arts of unsafe Rust.
 * [The Reference][ref] is not a formal spec, but is more detailed and comprehensive than the book.
@@ -53,4 +54,4 @@ before this policy was put into place. That work is being tracked
 [nomicon]: nomicon/index.html
 [unstable-book]: unstable-book/index.html
 [rustdoc-book]: rustdoc/index.html
-
+[cargo-book]: cargo/index.html
