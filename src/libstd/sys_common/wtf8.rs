@@ -209,7 +209,7 @@ impl Wtf8Buf {
         let c = unsafe {
             char::from_u32_unchecked(code_point.value)
         };
-        let mut bytes = [0; 4];
+        let mut bytes = [0; ::core::char::MAX_UTF8_LEN];
         let bytes = c.encode_utf8(&mut bytes).as_bytes();
         self.bytes.extend_from_slice(bytes)
     }
@@ -799,7 +799,7 @@ impl<'a> Iterator for EncodeWide<'a> {
             return Some(tmp);
         }
 
-        let mut buf = [0; 2];
+        let mut buf = [0; ::core::char::MAX_UTF16_LEN];
         self.code_points.next().map(|code_point| {
             let c = unsafe {
                 char::from_u32_unchecked(code_point.value)

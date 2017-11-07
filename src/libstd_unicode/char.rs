@@ -541,7 +541,9 @@ impl char {
     /// In both of these examples, '𝕊' takes two `u16`s to encode.
     ///
     /// ```
-    /// let mut b = [0; 2];
+    /// use std::char;
+    ///
+    /// let mut b = [0; char::MAX_UTF16_LEN];
     ///
     /// let result = '𝕊'.encode_utf16(&mut b);
     ///

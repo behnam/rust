@@ -62,6 +62,7 @@ use core::iter::{FromIterator, FusedIterator};
 use core::ops::{self, Add, AddAssign, Index, IndexMut};
 use core::ptr;
 use core::str::pattern::Pattern;
+use core::char;
 use std_unicode::lossy;
 use std_unicode::char::{decode_utf16, REPLACEMENT_CHARACTER};
 
@@ -963,7 +964,9 @@ impl String {
     pub fn push(&mut self, ch: char) {
         match ch.len_utf8() {
             1 => self.vec.push(ch as u8),
-            _ => self.vec.extend_from_slice(ch.encode_utf8(&mut [0; 4]).as_bytes()),
+            _ => self.vec.extend_from_slice(
+                ch.encode_utf8(&mut [0; char::MAX_UTF8_LEN]).as_bytes()
+            ),
         }
     }
 
@@ -1177,7 +1180,7 @@ impl String {
     #[stable(feature = "rust1", since = "1.0.0")]
     pub fn insert(&mut self, idx: usize, ch: char) {
         assert!(self.is_char_boundary(idx));
-        let mut bits = [0; 4];
+        let mut bits = [0; char::MAX_UTF8_LEN];
         let bits = ch.encode_utf8(&mut bits).as_bytes();
 
         unsafe {

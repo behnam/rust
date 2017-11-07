@@ -23,6 +23,18 @@ use str::{from_utf8_unchecked_mut, FromStr};
 use iter::FusedIterator;
 use mem::transmute;
 
+/// Maximum number of `u8` fields needed to encode a `char` value as UTF-8.
+///
+/// See also [`encode_utf8()`](#encode_utf8).
+#[stable(feature = "unicode_encode_char", since = "1.23.0")]
+pub const MAX_UTF8_LEN: usize = 4;
+
+/// Maximum number of `u16` fields needed to encode a `char` value as UTF-16.
+///
+/// See also [`encode_utf16()`](#encode_utf16).
+#[stable(feature = "unicode_encode_char", since = "1.23.0")]
+pub const MAX_UTF16_LEN: usize = 2;
+
 // UTF-8 ranges and tags for encoding characters
 const TAG_CONT: u8    = 0b1000_0000;
 const TAG_TWO_B: u8   = 0b1100_0000;
