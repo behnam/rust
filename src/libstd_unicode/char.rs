@@ -489,6 +489,10 @@ impl char {
     /// Encodes this character as UTF-8 into the provided byte buffer,
     /// and then returns the subslice of the buffer that contains the encoded character.
     ///
+    /// The buffer is expected to have enough space for the bytes.
+    /// If not sure how much memory you need, you should use `std::char::MAX_UTF8_LEN`,
+    /// which is the maximum number of bytes needed to encode one Unicode character as UTF-8.
+    ///
     /// # Panics
     ///
     /// Panics if the buffer is not large enough.
@@ -499,7 +503,9 @@ impl char {
     /// In both of these examples, 'ß' takes two bytes to encode.
     ///
     /// ```
-    /// let mut b = [0; 2];
+    /// use std::char;
+    ///
+    /// let mut b = [0; char::MAX_UTF8_LEN];
     ///
     /// let result = 'ß'.encode_utf8(&mut b);
     ///
@@ -530,6 +536,10 @@ impl char {
 
     /// Encodes this character as UTF-16 into the provided `u16` buffer,
     /// and then returns the subslice of the buffer that contains the encoded character.
+    ///
+    /// The buffer is expected to have enough space for the `u16` code units.
+    /// If not sure how much memory you need, you should use `std::char::MAX_UTF16_LEN`,
+    /// which is the maximum number of code units needed to encode one Unicode character as UTF-16.
     ///
     /// # Panics
     ///
